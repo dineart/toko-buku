@@ -1,20 +1,19 @@
 <?php
 require_once 'config.php';
-require_once 'BukuORM.php';
 require_once 'KategoriORM.php';
 require_once 'helper.php';
 
 $q = isset($_GET['q']) ? trim($_GET['q']) : '';
 
 if ($q !== '') {
-    // cari pada kolom judul dan penulis menggunakan ORM (parameter binding)
-    $rows = ORM::for_table('buku')
-        ->where_raw('judul LIKE ? OR penulis LIKE ?', array('%' . $q . '%', '%' . $q . '%'))
+    // cari kategori berdasarkan nama
+    $rows = ORM::for_table('kategori')
+        ->where_raw('nama LIKE ?', array('%' . $q . '%'))
         ->order_by_desc('id')
         ->find_many();
 } else {
-    // ambil semua
-    $rows = BukuORM::findMany();
+    // ambil semua kategori
+    $rows = KategoriORM::findMany();
 }
 ?>
 <!DOCTYPE html>
@@ -23,10 +22,11 @@ if ($q !== '') {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Daftar Buku (ORM)</title>
+        <title>Daftar Kategori (ORM)</title>
         <style>
             body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
-            .container { max-width: 1000px; margin: 0 auto; background: white; padding: 20px; border-radius: 5px; }
+            .container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 5px; }
+            h1 { color: #333; border-bottom: 3px solid #5cb85c; padding-bottom: 10px; }
             table, th, td { border: 1px solid #b8b8b8; padding: 8px 12px; }
             table { border-collapse: collapse; width: 100%; }
             form { margin-bottom: 1.5em; padding: 1em; background: #f9f9f9; border-radius: 4px; }
@@ -39,65 +39,56 @@ if ($q !== '') {
             .add-btn a { background: #5cb85c; color: white; padding: 8px 15px; border-radius: 3px; }
             .add-btn a:hover { background: #4cae4c; }
             tr:nth-child(even) { background: #f9f9f9; }
-            tr:first-child { background: #fffcf5; font-weight: bold; }
+            tr:first-child { background: #5cb85c; color: white; font-weight: bold; }
         </style>
     </head>
     <body>
         <div class="container">
-            <h1>Daftar Buku (ORM)</h1>
+            <h1>📂 Daftar Kategori Buku</h1>
             <p style="margin-top: 0; color: #666;">
-                <a href="list_kategori.php" style="color: #5cb85c; font-weight: bold;">📂 Kelola Kategori</a>
+                <a href="list_buku.php" style="color: #0066cc; font-weight: bold;">📚 Kembali ke Daftar Buku</a>
             </p>
 
             <form method="get" action="">
-                <input type="text" name="q" placeholder="Cari judul atau penulis" value="<?= htmlspecialchars($q); ?>" style="width: 300px;">
+                <input type="text" name="q" placeholder="Cari nama kategori" value="<?= htmlspecialchars($q); ?>" style="width: 300px;">
                 <button type="submit">Cari</button>
                 <?php if ($q !== ''): ?>
-                    <a href="list_buku.php" style="margin-left: 10px;">Reset</a>
+                    <a href="list_kategori.php" style="margin-left: 10px;">Reset</a>
                 <?php endif; ?>
             </form>
 
             <div class="add-btn">
-                <a href="form_tambah.php">+ Tambah Buku</a>
+                <a href="form_tambah_kategori.php">+ Tambah Kategori</a>
             </div>
 
             <table>
                 <tr>
                     <td>No</td>
-                    <td>Judul</td>
-                    <td>Penulis</td>
-                    <td>Kategori</td>
-                    <td>Harga</td>
-                    <td>Stok</td>
+                    <td>Nama Kategori</td>
+                    <td>Deskripsi</td>
                     <td>Aksi</td>
                 </tr>
                 <?php if (count($rows) > 0): ?>
-                    <?php foreach ($rows as $key => $buku): ?>
+                    <?php foreach ($rows as $key => $kategori): ?>
                     <tr>
                         <td><?= $key + 1; ?></td>
-                        <td><?= htmlspecialchars($buku->judul); ?></td>
-                        <td><?= htmlspecialchars($buku->penulis); ?></td>
+                        <td><?= htmlspecialchars($kategori->nama); ?></td>
+                        <td><?= htmlspecialchars(substr($kategori->deskripsi, 0, 50)); ?></td>
                         <td>
-                            <?php 
-                            $kategori = KategoriORM::findOne($buku->kategori_id);
-                            echo $kategori ? htmlspecialchars($kategori->nama) : 'N/A';
-                            ?>
-                        </td>
-                        <td><?= format_rupiah($buku->harga); ?></td>
-                        <td><?= $buku->stok; ?></td>
-                        <td>
-                            <a href="detail_buku.php?id=<?= $buku->id; ?>">Detail</a>
-                            <a href="form_edit.php?id=<?= $buku->id; ?>">Edit</a>
-                            <a href="delete.php?id=<?= $buku->id; ?>" onclick="return confirm('Yakin hapus?');" style="color: red;">Hapus</a>
+                            <a href="edit_kategori.php?id=<?= $kategori->id; ?>">Edit</a>
+                            <a href="delete_kategori.php?id=<?= $kategori->id; ?>" onclick="return confirm('Yakin hapus?');" style="color: red;">Hapus</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="7" style="text-align: center; color: #999;">Tidak ada data</td>
+                        <td colspan="4" style="text-align: center; color: #999;">Tidak ada data</td>
                     </tr>
                 <?php endif; ?>
             </table>
+
+            <br>
+            <a href="list_buku.php">← Kembali ke Daftar Buku</a>
         </div>
     </body>
 </html>
