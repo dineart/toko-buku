@@ -50,20 +50,4 @@ INSERT INTO `kategori` (`nama`, `deskripsi`) VALUES
 ('Referensi', 'Kamus, ensiklopedi, dan buku referensi lainnya');
 
 -- Insert data buku sample
-INSERT INTO `buku` (`judul`, `penulis`, `kategori_id`, `harga`, `stok`, `deskripsi`) VALUES 
-('Clean Code', 'Robert C. Martin', 5, 350000, 15, 'Panduan lengkap menulis kode yang bersih, terstruktur, dan mudah dipahami.'),
-('The Pragmatic Programmer', 'David Thomas, Andrew Hunt', 5, 285000, 12, 'Panduan praktis menjadi programmer yang efektif dan produktif.'),
-('Harry Potter and the Philosopher\'s Stone', 'J.K. Rowling', 1, 175000, 20, 'Petualangan sihir dimulai dari sekolah sihir Hogwarts.'),
-('Sapiens: Brief History of Humankind', 'Yuval Noah Harari', 4, 295000, 14, 'Perjalanan manusia dari zaman batu hingga era modern.'),
-('Start with Why', 'Simon Sinek', 6, 225000, 18, 'Temukan tujuan sejati dalam membangun bisnis dan mencapai kesuksesan.'),
-('Introduction to Algorithms', 'Thomas H. Cormen', 5, 450000, 8, 'Referensi lengkap tentang algoritma dan struktur data.'),
-('Atomic Habits', 'James Clear', 7, 199000, 25, 'Cara membangun kebiasaan baik dan mengubah hidup melalui perubahan kecil.'),
-('1984', 'George Orwell', 1, 150000, 10, 'Novel distopia tentang totalitarianisme dan kontrol sosial.'),
-('Educated', 'Tara Westover', 3, 240000, 9, 'Cerita pengalaman mendapat pendidikan melalui perjuangan dan ketabahan.'),
-('Sejarah Indonesia Kuno', 'Bambang Oetoro', 4, 180000, 7, 'Ikhtisar lengkap sejarah nusantara dari masa kuno.'),
-('Rich Dad Poor Dad', 'Robert T. Kiyosaki', 6, 220000, 22, 'Pelajaran finansial dan cara membangun kekayaan sejak muda.'),
-('The Power of Now', 'Eckhart Tolle', 7, 210000, 16, 'Buku tentang hidup di masa sekarang dan menemukan kedamaian batin.'),
-('Sapiens Junior', 'Yuval Noah Harari', 13, 95000, 30, 'Versi singkat Sapiens yang diadaptasi untuk anak-anak.'),
-('One Piece Vol. 1', 'Eiichiro Oda', 15, 45000, 50, 'Komik manga petualangan bajak laut terpopuler di dunia.'),
-('Healthy Mind Healthy Body', 'Dr. Deepak Chopra', 8, 185000, 11, 'Panduan kesehatan holistik dan keseimbangan tubuh pikiran.'),
-('The Art of French Cooking', 'Julia Child', 11, 320000, 5, 'Panduan masakan Prancis klasik untuk pemula hingga ahli.');
+INSERT INTO `buku` (`judul`, `penulis`, `kategori_id`, `harga`, `stok`, `deskripsi`) VALUES ('Clean Code', 'Robert C. Martin', 5, 350000, 15, 'Panduan lengkap menulis kode yang bersih, terstruktur, dan mudah dipahami.'),('The Pragmatic Programmer', 'David Thomas, Andrew Hunt', 5, 285000, 12, 'Panduan praktis menjadi programmer yang efektif dan produktif.'),('Harry Potter and the Philosopher\'s Stone', 'J.K. Rowling', 1, 175000, 20, 'Petualangan sihir dimulai dari sekolah sihir Hogwarts.'),('Sapiens: Brief History of Humankind', 'Yuval Noah Harari', 4, 295000, 14, 'Perjalanan manusia dari zaman batu hingga era modern.'),('Start with Why', 'Simon Sinek', 6, 225000, 18, 'Temukan tujuan sejati dalam membangun bisnis dan mencapai kesuksesan.'),('Introduction to Algorithms', 'Thomas H. Cormen', 5, 450000, 8, 'Referensi lengkap tentang algoritma dan struktur data.'),('Atomic Habits', 'James Clear', 7, 199000, 25, 'Cara membangun kebiasaan baik dan mengubah hidup melalui perubahan kecil.'),('1984', 'George Orwell', 1, 150000, 10, 'Novel distopia tentang totalitarianisme dan kontrol sosial.'),('Educated', 'Tara Westover', 3, 240000, 9, 'Cerita pengalaman mendapat pendidikan melalui perjuangan dan ketabahan.'),('Sejarah Indonesia Kuno', 'Bambang Oetoro', 4, 180000, 7, 'Ikhtisar lengkap sejarah nusantara dari masa kuno.'),('Rich Dad Poor Dad', 'Robert T. Kiyosaki', 6, 220000, 22, 'Pelajaran finansial dan cara membangun kekayaan sejak muda.'),('The Power of Now', 'Eckhart Tolle', 7, 210000, 16, 'Buku tentang hidup di masa sekarang dan menemukan kedamaian batin.'),('Sapiens Junior', 'Yuval Noah Harari', 13, 95000, 30, 'Versi singkat Sapiens yang diadaptasi untuk anak-anak.'),('One Piece Vol. 1', 'Eiichiro Oda', 15, 45000, 50, 'Komik manga petualangan bajak laut terpopuler di dunia.'),('Healthy Mind Healthy Body', 'Dr. Deepak Chopra', 8, 185000, 11, 'Panduan kesehatan holistik dan keseimbangan tubuh pikiran.'),('The Art of French Cooking', 'Julia Child', 11, 320000, 5, 'Panduan masakan Prancis klasik untuk pemula hingga ahli.');
